@@ -4,7 +4,7 @@ const y = 3;
 export function setPlateauArea(
   x: number,
   y: number,
-  fill: string = " "
+  fill: object = { rover: 0, direction: "X" }
 ): string[][] {
   const plateauArea: string[][] = Array(x)
     .fill(undefined)
