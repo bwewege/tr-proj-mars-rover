@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc  --project tsconfig.build.json",
     "start": "nodemon src/plateau.ts",
-    "test": "jest src/plateau"
+    "test": "jest src/rover_nav.test.ts"
   },
   "keywords": [],
   "author": "",
