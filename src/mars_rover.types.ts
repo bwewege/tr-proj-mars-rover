@@ -1,5 +1,5 @@
-export type Direction = "N" | "S" | "E" | "W" | "X";
+export type Orientation = "N" | "S" | "E" | "W" | "X";
 
-export type RoverDirection = { rover: number; direction: Direction };
+export type RoverOrientation = { rover: number; direction: Orientation };
 
-export type RoverPosition = [x: number, y: number, direction: Direction];
+export type RoverPosition = [x: number, y: number, direction: Orientation];
