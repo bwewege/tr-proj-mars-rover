@@ -22,7 +22,7 @@ describe("Create a 2D array of param string based on an x, y parameters", () => 
         { direction: "X", rover: 0 },
       ],
     ]);
-    expect(setPlateauArea(4, 3)).toEqual([
+    expect(setPlateauArea(3, 4)).toEqual([
       [
         { direction: "X", rover: 0 },
         { direction: "X", rover: 0 },
@@ -46,3 +46,6 @@ describe("Create a 2D array of param string based on an x, y parameters", () => 
     ]);
   });
 });
+
+//create test for empty input
+//create test for non integer input.

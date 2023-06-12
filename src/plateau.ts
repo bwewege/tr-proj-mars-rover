@@ -1,17 +1,16 @@
 import { Direction, RoverDirection } from "./mars_rover.types";
 
-const x = 3;
-const y = 3;
+const x = 6;
+const y = 7;
 
 export function setPlateauArea(
   x: number,
   y: number,
   fill: RoverDirection = { rover: 0, direction: "X" }
 ): string[][] {
-  const plateauArea: string[][] = Array(x)
+  const plateauArea: string[][] = Array(y)
     .fill(undefined)
-    .map(() => Array(y).fill(fill));
-  console.log(plateauArea);
+    .map(() => Array(x).fill(fill));
 
   return plateauArea;
 }
