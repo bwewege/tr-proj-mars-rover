@@ -20,4 +20,8 @@ describe("Receive rover's starting position, direction and string of instruction
     expect(instruct_Rover(2, 3, "E", "R")).toEqual([2, 3, "S"]);
     expect(instruct_Rover(2, 3, "W", "R")).toEqual([2, 3, "N"]);
   });
+  test("Rover follows a string of multiple instructions sequentially", () => {
+    expect(instruct_Rover(10, 10, "N", "MRMLMRM")).toEqual([12, 12, "E"]);
+    expect(instruct_Rover(10, 10, "N", "MMMLLMMRLML")).toEqual([10, 10, "E"]);
+  });
 });
