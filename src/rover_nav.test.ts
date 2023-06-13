@@ -10,4 +10,14 @@ describe("Receive rover's starting position, direction and string of instruction
     expect(instruct_Rover(2, 3, "E", "M")).toEqual([3, 3, "E"]);
     expect(instruct_Rover(2, 3, "W", "M")).toEqual([1, 3, "W"]);
   });
+  test("Rover rotates 90 degrees L or R - return new position", () => {
+    expect(instruct_Rover(2, 3, "N", "L")).toEqual([2, 3, "W"]);
+    expect(instruct_Rover(2, 3, "S", "L")).toEqual([2, 3, "E"]);
+    expect(instruct_Rover(2, 3, "E", "L")).toEqual([2, 3, "N"]);
+    expect(instruct_Rover(2, 3, "W", "L")).toEqual([2, 3, "S"]);
+    expect(instruct_Rover(2, 3, "N", "R")).toEqual([2, 3, "E"]);
+    expect(instruct_Rover(2, 3, "S", "R")).toEqual([2, 3, "W"]);
+    expect(instruct_Rover(2, 3, "E", "R")).toEqual([2, 3, "S"]);
+    expect(instruct_Rover(2, 3, "W", "R")).toEqual([2, 3, "N"]);
+  });
 });
