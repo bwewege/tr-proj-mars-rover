@@ -1,71 +1,69 @@
-import { Orientation, RoverPosition, Instructions } from "./mars_rover.types";
+import {
+  Compass,
+  RoverPosition,
+  Instructions,
+  Coordinates,
+} from "./mars_rover.types";
 
-const x = 10;
-const y = 10;
-const orientation = "N";
-const instructions = "MRMLMRM";
+// const x = 10;
+// const y = 10;
+// const direction = "N";
+// const instructions = "MRMLMRM";
 
 export function instruct_Rover(
   x: number,
   y: number,
-  orientation: Orientation,
+  direction: Compass,
   instructions: string = ""
 ) {
-  let currentY: number = y;
-  let currentX: number = x;
-  let currentOrientation: Orientation = orientation;
-  const compass: Orientation[] = ["N", "E", "S", "W"];
+  let currentCoord: Coordinates = { x: x, y: y };
+  let currentOrientation: Compass = direction;
+
+  const compass: Compass[] = ["N", "E", "S", "W"];
   const arrInstructions: string[] = instructions.split("");
 
   for (let i = 0; i < arrInstructions.length; i++) {
-    console.log(arrInstructions[i]);
     if (arrInstructions[i] === "M") {
-      switch (currentOrientation) {
-        case "N":
-          currentY = currentY + 1;
-          console.log("y:" + currentY);
-          break;
-        case "S":
-          currentY = currentY - 1;
-          console.log("y:" + currentY);
-          break;
-        case "E":
-          currentX = currentX + 1;
-          console.log("x:" + currentX);
-          break;
-        case "W":
-          currentX = currentX - 1;
-          console.log("x:" + currentX);
-          break;
-      }
-    } else {
-      switch (arrInstructions[i]) {
-        case "R":
-          currentOrientation =
-            compass[
-              compass.indexOf(currentOrientation) === 3
-                ? 0
-                : compass.indexOf(currentOrientation) + 1
-            ];
-          break;
-        case "L":
-          currentOrientation =
-            compass[
-              compass.indexOf(currentOrientation) === 0
-                ? 3
-                : compass.indexOf(currentOrientation) - 1
-            ];
-          break;
-      }
+      currentCoord = addCoordinates(currentCoord, currentOrientation);
+    } else if (arrInstructions[i] === "R") {
+      currentOrientation =
+        compass[
+          compass.indexOf(currentOrientation) === 3
+            ? 0
+            : compass.indexOf(currentOrientation) + 1
+        ];
+    } else if (arrInstructions[i] === "L") {
+      currentOrientation =
+        compass[
+          compass.indexOf(currentOrientation) === 0
+            ? 3
+            : compass.indexOf(currentOrientation) - 1
+        ];
     }
   }
 
   const currentPosition: RoverPosition = [
-    currentX,
-    currentY,
+    currentCoord.x,
+    currentCoord.y,
     currentOrientation,
   ];
 
   return currentPosition;
 }
-console.log(instruct_Rover(x, y, orientation, instructions));
+
+function addCoordinates(
+  currentCoord: Coordinates,
+  currentOrientation: Compass
+): Coordinates {
+  const movement: { [key: string]: Coordinates } = {
+    N: { x: 0, y: 1 },
+    S: { x: 0, y: -1 },
+    E: { x: 1, y: 0 },
+    W: { x: -1, y: 0 },
+  };
+  const moveCoord: Coordinates = movement[currentOrientation];
+  const newX = currentCoord.x + moveCoord.x;
+  const newY = currentCoord.y + moveCoord.y;
+
+  return { x: newX, y: newY };
+}
