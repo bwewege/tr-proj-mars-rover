@@ -10,6 +10,6 @@ const id = 1;
 const x = 5;
 const y = 5;
 const direction = "W";
-let instructions = "MLMMMRMMM";
+let instructions = "R";
 
 console.log(instruct_Rover(id, x, y, direction, instructions));

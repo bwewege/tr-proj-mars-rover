@@ -4,6 +4,7 @@ import {
   Coordinates,
   status,
   roverStateType,
+  Instructions,
 } from "./mars_rover.types";
 
 export function instruct_Rover(
@@ -23,9 +24,6 @@ export function instruct_Rover(
     status: "Ready",
   };
 
-  //let currentCoord: [Coordinates, status] = [{ x: x, y: y }, "Ready"];
-  //let currentOrientation: Compass = direction;
-
   arrInstructions.forEach((instruction) => {
     switch (instruction) {
       case "M":
@@ -33,25 +31,10 @@ export function instruct_Rover(
           break;
         }
         roverState = moveRover(roverState);
-        console.log(roverState);
-        break;
-      case "R":
-        roverState.orientation =
-          compass[
-            compass.indexOf(roverState.orientation) === 3
-              ? 0
-              : compass.indexOf(roverState.orientation) + 1
-          ];
-        roverState.status = "Success";
         break;
       case "L":
-        roverState.orientation =
-          compass[
-            compass.indexOf(roverState.orientation) === 0
-              ? 3
-              : compass.indexOf(roverState.orientation) - 1
-          ];
-        roverState.status = "Success";
+      case "R":
+        roverState = rotateRover(roverState, instruction);
         break;
     }
   });
@@ -85,6 +68,28 @@ function moveRover(roverState: roverStateType): roverStateType {
     };
     roverState.status = "Success";
   }
+
+  return roverState;
+}
+
+function rotateRover(
+  roverState: roverStateType,
+  instruction: string
+): roverStateType {
+  const rotationDirection: { [key: string]: number } = { L: -1, R: 1 };
+  const compass: Compass[] = ["N", "E", "S", "W"];
+
+  let newOrientation =
+    compass.indexOf(roverState.orientation) + rotationDirection[instruction];
+
+  if (newOrientation > compass.length - 1) {
+    newOrientation = 0;
+  } else if (newOrientation < 0) {
+    newOrientation = compass.length - 1;
+  }
+
+  roverState.orientation = compass[newOrientation];
+  roverState.status = "Success";
 
   return roverState;
 }
