@@ -1,14 +1,4 @@
-import {
-  Compass,
-  RoverPosition,
-  Instructions,
-  Coordinates,
-} from "./mars_rover.types";
-
-// const x = 10;
-// const y = 10;
-// const direction = "N";
-// const instructions = "MRMLMRM";
+import { Compass, RoverPosition, Coordinates } from "./mars_rover.types";
 
 export function instruct_Rover(
   x: number,
@@ -22,17 +12,17 @@ export function instruct_Rover(
   const compass: Compass[] = ["N", "E", "S", "W"];
   const arrInstructions: string[] = instructions.split("");
 
-  for (let i = 0; i < arrInstructions.length; i++) {
-    if (arrInstructions[i] === "M") {
-      currentCoord = addCoordinates(currentCoord, currentOrientation);
-    } else if (arrInstructions[i] === "R") {
+  arrInstructions.forEach((instruction) => {
+    if (instruction === "M") {
+      currentCoord = moveRover(currentCoord, currentOrientation);
+    } else if (instruction === "R") {
       currentOrientation =
         compass[
           compass.indexOf(currentOrientation) === 3
             ? 0
             : compass.indexOf(currentOrientation) + 1
         ];
-    } else if (arrInstructions[i] === "L") {
+    } else if (instruction === "L") {
       currentOrientation =
         compass[
           compass.indexOf(currentOrientation) === 0
@@ -40,7 +30,7 @@ export function instruct_Rover(
             : compass.indexOf(currentOrientation) - 1
         ];
     }
-  }
+  });
 
   const currentPosition: RoverPosition = [
     currentCoord.x,
@@ -51,7 +41,7 @@ export function instruct_Rover(
   return currentPosition;
 }
 
-function addCoordinates(
+function moveRover(
   currentCoord: Coordinates,
   currentOrientation: Compass
 ): Coordinates {
