@@ -1,18 +1,14 @@
-import { RoverOrientation } from "./mars_rover.types";
+import { PlateauSize } from "./mars_rover.types";
 
-const x = 6;
-const y = 7;
+export function setPlateauArea(width: number, height: number): PlateauSize {
+  // const plateauArea: string[][] = Array(y)
+  //   .fill(undefined)
+  //   .map(() => Array(x).fill(fill));
+  const plateau: PlateauSize = { width: 0, height: 0 };
 
-export function setPlateauArea(
-  x: number,
-  y: number,
-  fill: RoverOrientation = { rover: 0, direction: "X" }
-): string[][] {
-  const plateauArea: string[][] = Array(y)
-    .fill(undefined)
-    .map(() => Array(x).fill(fill));
-
-  return plateauArea;
+  return plateau;
 }
 
-setPlateauArea(x, y);
+// setPlateauArea(x, y);
+
+// export type PlateauSize = { width: number; height: number };

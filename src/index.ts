@@ -5,6 +5,7 @@
 
 // output rovers final position and message if had to stop cause of plateau.
 import { instruct_Rover } from "./rover_nav";
+import { setPlateauArea } from "./plateau";
 
 const id = 1;
 const x = 5;
