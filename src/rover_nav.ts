@@ -1,11 +1,4 @@
-import {
-  Compass,
-  RoverPosition,
-  Coordinates,
-  status,
-  roverStateType,
-  Instructions,
-} from "./mars_rover.types";
+import { Compass, Coordinates, roverStateType } from "./mars_rover.types";
 
 export function instruct_Rover(
   id: number,
@@ -78,14 +71,15 @@ function rotateRover(
 ): roverStateType {
   const rotationDirection: { [key: string]: number } = { L: -1, R: 1 };
   const compass: Compass[] = ["N", "E", "S", "W"];
+  const compassLength: number = compass.length - 1;
 
   let newOrientation =
     compass.indexOf(roverState.orientation) + rotationDirection[instruction];
 
-  if (newOrientation > compass.length - 1) {
+  if (newOrientation > compassLength) {
     newOrientation = 0;
   } else if (newOrientation < 0) {
-    newOrientation = compass.length - 1;
+    newOrientation = compassLength;
   }
 
   roverState.orientation = compass[newOrientation];
