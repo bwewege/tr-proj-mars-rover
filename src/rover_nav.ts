@@ -1,34 +1,35 @@
 import { Compass, Coordinates, roverStateType } from "./mars_rover.types";
+import { globalPlateauArea } from ".";
 
 export function instruct_Rover(
   id: number,
   x: number,
   y: number,
-  direction: Compass,
+  orientation: Compass,
   instructions: string = ""
-) {
+): roverStateType {
   const compass: Compass[] = ["N", "E", "S", "W"];
   const arrInstructions: string[] = instructions.split("");
 
   let roverState: roverStateType = {
     id: id,
     coordinates: { x: x, y: y },
-    orientation: direction,
+    orientation: orientation,
     status: "Ready",
   };
 
   arrInstructions.forEach((instruction) => {
-    switch (instruction) {
-      case "M":
-        if (roverState.status === "Plateau Limit Reached") {
+    if (roverState.status !== "Plateau Limit Reached") {
+      switch (instruction) {
+        case "M":
+          roverState = moveRover(roverState);
           break;
-        }
-        roverState = moveRover(roverState);
-        break;
-      case "L":
-      case "R":
-        roverState = rotateRover(roverState, instruction);
-        break;
+        case "L":
+        case "R":
+          roverState = rotateRover(roverState, instruction);
+          break;
+      }
+      //console.log(roverState);
     }
   });
 
@@ -43,13 +44,11 @@ function moveRover(roverState: roverStateType): roverStateType {
     W: { x: -1, y: 0 },
   }; // NTS - future change - pass in number of moves.
 
-  const plateau: Coordinates = { x: 20, y: 20 }; //plateau defined in size
-
   const moveCoord: Coordinates = movement[roverState.orientation];
 
   if (
-    roverState.coordinates.x + moveCoord.x > plateau.x - 1 ||
-    roverState.coordinates.y + moveCoord.y > plateau.y - 1 ||
+    roverState.coordinates.x + moveCoord.x > globalPlateauArea.width - 1 ||
+    roverState.coordinates.y + moveCoord.y > globalPlateauArea.height - 1 ||
     roverState.coordinates.x + moveCoord.x < 0 ||
     roverState.coordinates.y + moveCoord.y < 0
   ) {
