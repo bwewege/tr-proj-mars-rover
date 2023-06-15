@@ -1,3 +1,5 @@
+// NB *** Comment out line 15 to 27 before running tests
+
 import { instruct_Rover } from "./rover_nav";
 import { setPlateauArea } from "./plateau";
 import { Compass, PlateauSize, roverStateType } from "./mars_rover.types";
@@ -16,6 +18,7 @@ const allTheRovers: [number, number, number, Compass, string][] = [
   [3, 8, 2, "N", "RMLMRMLM"],
 ];
 
+// Store final rover state for future use
 let AllRoversFinalState: roverStateType[] = [];
 
 for (const parameters of allTheRovers) {

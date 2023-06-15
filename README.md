@@ -1,15 +1,15 @@
-## Mars Rover TypeScript Project
+# Mars Rover TypeScript Project
 
 This project implements a Mars Rover navigation system. It allows you to define the navigation area, the plateau, and set the initial coordinates and orientations of multiple rovers. You can then instruct each rover to move around the plateau by sending a sequence of instructions.
 
-# Features
+## Features
 
 - Define the size of a square or rectangular plateau - Width and height
 - Set the starting position (x, y) and orientation (N,S,E,W) of each rover
 - Instruct the rovers to move based on a series of instructions withing a string (L, R, M)
 - Detect the plateau boundry and restrict further movement
 
-# Future Features
+## Future Features
 
 - Detect if a rover is going to collide with another rover and restrict further movement
 - Visually represent the plateau and each rovers current position
@@ -19,6 +19,11 @@ This project implements a Mars Rover navigation system. It allows you to define 
 - Allow rover to move more than once
 - Allow user to decide movement
 - Visually represent each rovers movement as it receives each instruction.
+
+## Immediate Error Check Required
+
+- Make sure initial position cannot be outside of plateau.
+- Make sure rovers cannot crash into each other.
 
 # Instructions
 
