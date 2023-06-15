@@ -23,38 +23,3 @@ for (const parameters of allTheRovers) {
 }
 
 console.log(AllRoversFinalState);
-
-// Trying to represent this visually. Don't Judge :)
-
-// let maxX = 0;
-// let maxY = 0;
-
-// for (const rover of AllRoversFinalState) {
-//   if (rover.coordinates.x >= maxX) {
-//     maxX = rover.coordinates.x;
-//   }
-//   if (rover.coordinates.y >= maxY) {
-//     maxY = rover.coordinates.y;
-//   }
-// }
-
-// const horizontalBorder = "x".repeat(globalPlateauArea.width + 2);
-// const innerSpace = " ".repeat(globalPlateauArea.width);
-// const innerRow = `x${innerSpace}x`;
-
-// console.log(horizontalBorder);
-
-// for (let y = 0; y < globalPlateauArea.height; y++) {
-//   let row = innerRow;
-//   for (let x = 1; x < globalPlateauArea.width - 1; x++) {
-//     const rover = AllRoversFinalState.find(
-//       (rover) => rover.coordinates.x === x && rover.coordinates.y === y
-//     );
-//     if (rover) {
-//       row = row.slice(0, x) + rover.id.toString() + row.slice(x + 1);
-//     }
-//   }
-//   console.log(row);
-// }
-
-// console.log(horizontalBorder);

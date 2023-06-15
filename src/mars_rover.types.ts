@@ -1,4 +1,4 @@
-export type Compass = "N" | "S" | "E" | "W" | "X";
+export type Compass = "N" | "S" | "E" | "W";
 
 export type status =
   | "Plateau Limit Reached"

@@ -8,9 +8,9 @@ export function instruct_Rover(
   orientation: Compass,
   instructions: string = ""
 ): roverStateType {
-  const compass: Compass[] = ["N", "E", "S", "W"];
   const arrInstructions: string[] = instructions.split("");
 
+  // Initialise Rover State
   let roverState: roverStateType = {
     id: id,
     coordinates: { x: x, y: y },
@@ -18,6 +18,7 @@ export function instruct_Rover(
     status: "Ready",
   };
 
+  // Process instructions
   arrInstructions.forEach((instruction) => {
     if (roverState.status !== "Plateau Limit Reached") {
       switch (instruction) {
@@ -42,7 +43,7 @@ function moveRover(roverState: roverStateType): roverStateType {
     S: { x: 0, y: -1 },
     E: { x: 1, y: 0 },
     W: { x: -1, y: 0 },
-  }; // NTS - future change - pass in number of moves.
+  };
 
   const moveCoord: Coordinates = movement[roverState.orientation];
 
